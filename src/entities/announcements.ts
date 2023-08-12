@@ -13,13 +13,13 @@ import { User } from './users';
 
 @Entity('announcements')
 export class Announcement {
-    @PrimaryGeneratedColumn('increment')
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column('varchar', { length: 45 })
     name: string;
 
-    @Column('varchar', { length: 45 })
+    @Column('varchar', { length: 15 })
     brand: string;
 
     @Column('varchar', { length: 250 })
@@ -28,8 +28,20 @@ export class Announcement {
     @Column()
     year: number;
 
+    @Column('varchar', { length: 15 })
+    fuel: string;
+
+    @Column('varchar', { length: 250 })
+    description: string;
+
+    @Column('varchar', { length: 10 })
+    color: string;
+
     @Column()
-    fuel: number;
+    km: number;
+
+    @Column()
+    price: number;
 
     @CreateDateColumn({ type: 'date' })
     value: number;

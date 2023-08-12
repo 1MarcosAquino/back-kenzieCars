@@ -11,19 +11,19 @@ import { User } from './users';
 
 @Entity('address')
 export class Address {
-    @PrimaryGeneratedColumn('increment')
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column('varchar', { length: 45 })
     street: string;
 
-    @Column('varchar', { length: 45, unique: true })
+    @Column('varchar', { length: 10 })
     number: string;
 
-    @Column({ default: false, nullable: true })
-    city: boolean;
+    @Column('varchar', { length: 20 })
+    city: string;
 
-    @Column('varchar', { length: 120 })
+    @Column('varchar', { length: 2 })
     state: string;
 
     @UpdateDateColumn({ type: 'date' })

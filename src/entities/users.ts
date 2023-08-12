@@ -17,8 +17,8 @@ import { Announcement } from './announcements';
 
 @Entity('users')
 export class User {
-    @PrimaryGeneratedColumn('increment')
-    id: number;
+    @PrimaryGeneratedColumn('uuid')
+    id: string;
 
     @Column('varchar', { length: 45 })
     firstName: string;
@@ -30,7 +30,7 @@ export class User {
     email: string;
 
     @Column({ default: false, nullable: true })
-    admin: boolean;
+    announcer: boolean;
 
     @Column('varchar', { length: 120 })
     password: string;
