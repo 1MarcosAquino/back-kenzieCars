@@ -1,3 +1,4 @@
 import { login } from './login';
+import { users } from './users';
 
-export default { login };
+export default { login, users };

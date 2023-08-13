@@ -1,10 +1,10 @@
 import jwt from 'jsonwebtoken';
 import { TCreateToken } from '../interfaces';
 
-export const createToken = ({ email, id }: TCreateToken): string => {
+export const createToken = ({ announcer, id }: TCreateToken): string => {
     return jwt.sign(
         {
-            email,
+            announcer,
         },
         String(process.env.SECRET_KEY),
         {

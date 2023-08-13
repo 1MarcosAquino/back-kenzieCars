@@ -9,8 +9,8 @@ export const permissionOfAccess = async (
     res: Response,
     next: NextFunction
 ): Promise<void> => {
-    const id = parseInt(res.locals.id);
-    const userId = parseInt(req.params.id) || parseInt(res.locals.id);
+    const id = res.locals.id;
+    const userId = req.params.id || res.locals.id;
 
     if (id !== userId) throw new AppError('Insufficient permission', 403);
 

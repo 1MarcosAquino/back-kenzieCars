@@ -7,6 +7,13 @@ import {
     updateUser,
 } from './user';
 
+import {
+    createAddress,
+    deleteAddress,
+    updateAddress,
+    addressOrNotFoundById,
+} from './address';
+
 export default {
     userOrNotFoundByEmail,
     userOrNotFoundById,
@@ -14,4 +21,9 @@ export default {
     createUser,
     deleteUser,
     updateUser,
+
+    createAddress,
+    deleteAddress,
+    updateAddress,
+    addressOrNotFoundById,
 };

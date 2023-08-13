@@ -23,7 +23,7 @@ export const userOrNotFoundByEmail = async (
 };
 
 export const verifyUserExistsByEmail = async (email: string): Promise<void> => {
-    const user: TUser | null = await userOrNotFoundByEmail(email);
+    const user = await userRepo.exist({ where: { email } });
 
     if (user) throw new AppError('Email already exists', 409);
 };
@@ -31,13 +31,13 @@ export const verifyUserExistsByEmail = async (email: string): Promise<void> => {
 export const createUser = async (data: User): Promise<TUserResponse> => {
     const newUser = await userRepo.save(userRepo.create(data));
 
-    return schema.userResponse.parse(newUser);
+    return schema.userResSchema.parse(newUser);
 };
 
 export const updateUser = async (data: User): Promise<TUserUpdate> => {
     const newUser = await userRepo.save(userRepo.create(data));
 
-    return schema.userUpdate.parse(newUser);
+    return schema.userUpdateSchema.parse(newUser);
 };
 
 export const deleteUser = async (id: string): Promise<void> => {

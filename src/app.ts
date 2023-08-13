@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use(cors({ origin: '*' }));
 
-// app.use('/users', route.users);
+app.use('/users', route.users);
 app.use('/login', route.login);
 app.use('/announcements', (req, res) => res.status(200).json('ok'));
 

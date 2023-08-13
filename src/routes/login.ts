@@ -7,7 +7,7 @@ export const login: Router = Router();
 
 login.post(
     '',
-    middleware.validateDataRequest(schema.userLogin),
+    middleware.validateDataRequest(schema.loginSchema),
     middleware.ensureUserExists,
     controller.login
 );

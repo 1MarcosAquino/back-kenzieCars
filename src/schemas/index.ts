@@ -1,11 +1,10 @@
 import {
     userSchema,
-    userResquest,
-    userResponse,
-    userResponseRetriever,
-    userLogin,
     createToken,
-    userUpdate,
+    loginSchema,
+    userReqSchema,
+    userResSchema,
+    userUpdateSchema,
 } from './user';
 
 import {
@@ -15,17 +14,26 @@ import {
     announcementSchemaUpdate,
 } from './announcement';
 
+import {
+    addressSchema,
+    addressSchemaRequest,
+    addressSchemaUpdate,
+} from './address';
+
 export default {
     userSchema,
-    userResquest,
-    userResponse,
-    userResponseRetriever,
-    userLogin,
+    loginSchema,
+    userReqSchema,
+    userResSchema,
+    userUpdateSchema,
     createToken,
-    userUpdate,
 
     announcementSchema,
     announcementSchemaRequest,
     announcementSchemaResponse,
     announcementSchemaUpdate,
+
+    addressSchema,
+    addressSchemaRequest,
+    addressSchemaUpdate,
 };

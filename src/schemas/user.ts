@@ -12,32 +12,22 @@ export const userSchema = z.object({
     address: addressSchemaRequest,
 });
 
-export const userResquest = userSchema.omit({
+export const userReqSchema = userSchema.omit({
     id: true,
-    createdAt: true,
-    contacts: true,
 });
 
-export const userResponse = userSchema.omit({
+export const loginSchema = userSchema.pick({
     password: true,
-    contacts: true,
-});
-export const userResponseRetriever = userSchema.omit({
-    password: true,
-});
-
-export const userLogin = userSchema
-    .pick({
-        password: true,
-        email: true,
-    })
-    .required();
-
-export const createToken = userSchema.pick({
-    id: true,
     email: true,
 });
 
-export const userUpdate = userSchema
-    .omit({ id: true, createdAt: true, contacts: true })
-    .partial();
+export const createToken = userSchema.pick({
+    id: true,
+    announcer: true,
+});
+
+export const userResSchema = userSchema.omit({
+    password: true,
+});
+
+export const userUpdateSchema = userSchema.omit({ id: true }).partial();
