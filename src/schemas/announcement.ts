@@ -14,3 +14,5 @@ export const announcementSchema = z.object({
 });
 
 export const announcementSchemaRequest = announcementSchema.omit({ id: true });
+export const announcementSchemaResponse = announcementSchema.omit({ id: true });
+export const announcementSchemaUpdate = announcementSchema.omit({ id: true });

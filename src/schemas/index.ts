@@ -8,6 +8,13 @@ import {
     userUpdate,
 } from './user';
 
+import {
+    announcementSchema,
+    announcementSchemaRequest,
+    announcementSchemaResponse,
+    announcementSchemaUpdate,
+} from './announcement';
+
 export default {
     userSchema,
     userResquest,
@@ -16,4 +23,9 @@ export default {
     userLogin,
     createToken,
     userUpdate,
+
+    announcementSchema,
+    announcementSchemaRequest,
+    announcementSchemaResponse,
+    announcementSchemaUpdate,
 };

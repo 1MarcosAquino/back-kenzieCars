@@ -2,6 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { ZodTypeAny } from 'zod';
 import { AppError } from '../errors';
+import service from '../services';
 
 export const permissionOfAccess = async (
     req: Request,
@@ -52,8 +53,7 @@ export const ensureUserNotExists = async (
     res: Response,
     next: NextFunction
 ): Promise<void> => {
-    await service.verifyUserNotExistsByEmail(req.body.email);
-    await service.verifyUserNotByTelephoneNumber(req.body.telephone);
+    await service.verifyUserExistsByEmail(req.body.email);
 
     return next();
 };
@@ -63,7 +63,7 @@ export const ensureUserExists = async (
     res: Response,
     next: NextFunction
 ): Promise<Response | void> => {
-    const id = parseInt(res.locals.id);
+    const id = res.locals.id;
     if (req.body.email) await service.userOrNotFoundByEmail(req.body.email);
     else await service.userOrNotFoundById(id);
 

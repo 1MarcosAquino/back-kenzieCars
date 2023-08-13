@@ -3,10 +3,7 @@ import service from '../services';
 
 import utility from '../utilities';
 
-export const loginUser = async (
-    req: Request,
-    res: Response
-): Promise<Response> => {
+export const login = async (req: Request, res: Response): Promise<Response> => {
     const user = await service.userOrNotFoundByEmail(req.body.email);
     const token = utility.createToken(user!);
 

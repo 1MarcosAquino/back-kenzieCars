@@ -9,5 +9,5 @@ login.post(
     '',
     middleware.validateDataRequest(schema.userLogin),
     middleware.ensureUserExists,
-    controller.loginUser
+    controller.login
 );
