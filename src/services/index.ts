@@ -5,14 +5,14 @@ import {
     createUser,
     deleteUser,
     updateUser,
-} from './user';
+} from './user.service';
 
 import {
     createAddress,
     deleteAddress,
     updateAddress,
     addressOrNotFoundById,
-} from './address';
+} from './address.service';
 
 export default {
     userOrNotFoundByEmail,

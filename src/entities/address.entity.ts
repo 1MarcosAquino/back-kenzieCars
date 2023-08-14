@@ -7,7 +7,7 @@ import {
     JoinColumn,
 } from 'typeorm';
 
-import { User } from './users';
+import { User } from './users.entity';
 
 @Entity('address')
 export class Address {
@@ -29,7 +29,7 @@ export class Address {
     @UpdateDateColumn({ type: 'date' })
     updatedAt: string;
 
-    @OneToOne(() => User)
+    @OneToOne(() => User, (user) => user.address)
     @JoinColumn()
     user: User;
 }

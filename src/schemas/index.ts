@@ -2,31 +2,36 @@ import {
     userSchema,
     createToken,
     loginSchema,
-    userReqSchema,
-    userResSchema,
+    userCreateSchema,
     userUpdateSchema,
-} from './user';
+    userResponseSchema,
+    userUpdateResponseSchema,
+    userCreateResponseSchema,
+} from './user.schema';
 
 import {
     announcementSchema,
     announcementSchemaRequest,
     announcementSchemaResponse,
     announcementSchemaUpdate,
-} from './announcement';
+} from './announcement.schema';
 
 import {
     addressSchema,
-    addressSchemaRequest,
+    addressCreateSchema,
     addressSchemaUpdate,
-} from './address';
+} from './address.schema';
 
 export default {
     userSchema,
     loginSchema,
-    userReqSchema,
-    userResSchema,
+    userCreateSchema,
+    userUpdateResponseSchema,
+    userCreateResponseSchema,
+
     userUpdateSchema,
     createToken,
+    userResponseSchema,
 
     announcementSchema,
     announcementSchemaRequest,
@@ -34,6 +39,6 @@ export default {
     announcementSchemaUpdate,
 
     addressSchema,
-    addressSchemaRequest,
+    addressCreateSchema,
     addressSchemaUpdate,
 };

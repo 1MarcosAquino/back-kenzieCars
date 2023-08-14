@@ -4,7 +4,7 @@ import {
     deleteUser,
     retrieverUser,
     updateUser,
-} from './user';
+} from './user.controller';
 
 export default {
     login,

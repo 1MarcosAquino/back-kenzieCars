@@ -4,7 +4,7 @@ import {
     ensureUserNotExists,
     validateToken,
     permissionOfAccess,
-} from './user';
+} from './user.middleware';
 
 export default {
     validateDataRequest,

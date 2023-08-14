@@ -8,8 +8,8 @@ export const addressSchema = z.object({
     state: z.string().max(2),
 });
 
-export const addressSchemaRequest = addressSchema.omit({
+export const addressCreateSchema = addressSchema.omit({
     id: true,
 });
 
-export const addressSchemaUpdate = addressSchemaRequest.partial();
+export const addressSchemaUpdate = addressCreateSchema.partial();

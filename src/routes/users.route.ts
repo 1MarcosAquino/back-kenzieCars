@@ -8,7 +8,7 @@ export const users: Router = Router();
 users.post(
     '',
     middleware.ensureUserNotExists,
-    middleware.validateDataRequest(schema.userReqSchema),
+    middleware.validateDataRequest(schema.userCreateSchema),
     controller.createUSer
 );
 
@@ -19,9 +19,18 @@ users.get(
     controller.retrieverUser
 );
 
+users.patch(
+    '',
+    middleware.validateDataRequest(schema.userUpdateSchema),
+    middleware.ensureUserExists,
+    middleware.validateToken,
+    controller.updateUser
+);
+
 users.delete(
     '',
     middleware.validateToken,
     middleware.permissionOfAccess,
+    middleware.ensureUserExists,
     controller.deleteUser
 );

@@ -1,5 +1,5 @@
-import { comparePassword } from './comparePassword';
-import { createToken } from './createToken';
+import { comparePassword } from './comparePassword.ultility';
+import { createToken } from './createToken.ultility';
 
 export default {
     comparePassword,

@@ -12,8 +12,8 @@ import {
 } from 'typeorm';
 
 import { hashSync, getRounds } from 'bcryptjs';
-import { Address } from './address';
-import { Announcement } from './announcements';
+import { Address } from './address.entity';
+import { Announcement } from './announcements.entity';
 
 @Entity('users')
 export class User {
@@ -44,7 +44,7 @@ export class User {
     @DeleteDateColumn({ type: 'date', nullable: true })
     deletedAt?: string | null | undefined;
 
-    @OneToOne(() => Address)
+    @OneToOne(() => Address, (address) => address.user)
     address: Address;
 
     @OneToMany(() => Announcement, (announcements) => announcements.user)

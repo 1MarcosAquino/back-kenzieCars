@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import service from '../services';
-
 import utility from '../utilities';
 import schema from '../schemas';
 
@@ -22,9 +21,11 @@ export const createUSer = async (
     const { address } = req.body;
     const user = await service.createUser(req.body);
 
-    const add = await service.createAddress({ ...address, user });
+    await service.createAddress({ ...address, user });
 
-    return res.status(201).json({ ...user, add });
+    const parse = schema.userCreateResponseSchema.parse(user);
+
+    return res.status(201).json(parse);
 };
 
 export const retrieverUser = async (
@@ -32,8 +33,9 @@ export const retrieverUser = async (
     res: Response
 ): Promise<Response<Response>> => {
     const user = await service.userOrNotFoundById(res.locals.id);
+    const parse = schema.userResponseSchema.parse(user);
 
-    return res.status(200).json(schema.userResSchema.parse(user));
+    return res.status(200).json(parse);
 };
 
 export const updateUser = async (req: Request, res: Response) => {
@@ -43,16 +45,19 @@ export const updateUser = async (req: Request, res: Response) => {
         ...user,
         ...req.body,
     };
+    await service.updateUser(data);
 
-    const userUpdate = await service.updateUser(data);
-    return res.status(200).json(userUpdate);
+    return res.status(200).json(`${Object.keys(req.body)} updated`);
 };
 
 export const deleteUser = async (
     req: Request,
     res: Response
 ): Promise<Response> => {
-    await service.deleteUser(res.locals.id);
+    const user = await service.userOrNotFoundById(res.locals.id);
+
+    await service.deleteAddress(user.address);
+    await service.deleteUser(user);
 
     return res.status(204).send();
 };

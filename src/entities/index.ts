@@ -1,3 +1,3 @@
-export { User } from './users';
-export { Announcement } from './announcements';
-export { Address } from './address';
+export { User } from './users.entity';
+export { Announcement } from './announcements.entity';
+export { Address } from './address.entity';

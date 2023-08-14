@@ -64,6 +64,7 @@ export const ensureUserExists = async (
     next: NextFunction
 ): Promise<Response | void> => {
     const id = res.locals.id;
+    console.log(id);
     if (req.body.email) await service.userOrNotFoundByEmail(req.body.email);
     else await service.userOrNotFoundById(id);
 

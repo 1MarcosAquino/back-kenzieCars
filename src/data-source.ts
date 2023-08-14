@@ -41,6 +41,6 @@ const announcementRepo: Repository<Announcement> =
 
 const userRepo: Repository<User> = AppDataSource.getRepository(User);
 
-const adressRepo: Repository<Address> = AppDataSource.getRepository(Address);
+const addressRepo: Repository<Address> = AppDataSource.getRepository(Address);
 
-export { AppDataSource, userRepo, announcementRepo, adressRepo };
+export { AppDataSource, userRepo, announcementRepo, addressRepo };
