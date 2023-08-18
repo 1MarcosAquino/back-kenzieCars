@@ -1,5 +1,5 @@
 import { DataSource, DataSourceOptions, Repository } from 'typeorm';
-import { User, Address, Announcement } from './entities';
+import { User, Address, Ads } from './entities';
 import 'dotenv/config';
 import path from 'path';
 
@@ -36,8 +36,7 @@ const settings = (): DataSourceOptions => {
 
 const AppDataSource = new DataSource(settings());
 
-const announcementRepo: Repository<Announcement> =
-    AppDataSource.getRepository(Announcement);
+const announcementRepo: Repository<Ads> = AppDataSource.getRepository(Ads);
 
 const userRepo: Repository<User> = AppDataSource.getRepository(User);
 

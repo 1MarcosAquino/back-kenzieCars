@@ -4,15 +4,16 @@ export const announcementSchema = z.object({
     id: z.string(),
     name: z.string().max(45),
     brand: z.string().max(15),
-    image: z.string().max(250),
-    year: z.number().min(4).max(4),
-    fuel: z.string().max(15),
-    description: z.string().max(250),
-    color: z.string().max(10),
-    km: z.number(),
-    price: z.number(),
+    year: z.number(),
+    fuel: z.number(),
+    value: z.number(),
+    description: z.string(),
+    miles: z.number(),
+    color: z.string().max(30),
+    model: z.string().max(20),
+    image: z.array(z.string()),
 });
 
-export const announcementSchemaRequest = announcementSchema.omit({ id: true });
-export const announcementSchemaResponse = announcementSchema.omit({ id: true });
-export const announcementSchemaUpdate = announcementSchema.omit({ id: true });
+export const announcementCreateSchema = announcementSchema.omit({ id: true });
+export const announcementResponseSchema = announcementSchema.omit({ id: true });
+export const announcementUpdateSchema = announcementSchema.omit({ id: true });

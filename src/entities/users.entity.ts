@@ -12,8 +12,9 @@ import {
 } from 'typeorm';
 
 import { hashSync, getRounds } from 'bcryptjs';
-import { Address } from './address.entity';
-import { Announcement } from './announcements.entity';
+import { Address } from './addresses.entity';
+import { Ads } from './ads.entity';
+import { Comment } from './comments.entity';
 
 @Entity('users')
 export class User {
@@ -47,8 +48,11 @@ export class User {
     @OneToOne(() => Address, (address) => address.user)
     address: Address;
 
-    @OneToMany(() => Announcement, (announcements) => announcements.user)
-    announcements: Announcement[];
+    @OneToMany(() => Ads, (ads) => ads.user)
+    ads: Ads[];
+
+    @OneToMany(() => Comment, (comments) => comments.user)
+    comments: Comment[];
 
     @BeforeInsert()
     @BeforeUpdate()

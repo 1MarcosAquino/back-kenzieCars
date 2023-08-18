@@ -9,7 +9,7 @@ import {
 
 import { User } from './users.entity';
 
-@Entity('address')
+@Entity('addresses')
 export class Address {
     @PrimaryGeneratedColumn('uuid')
     id: string;
@@ -25,6 +25,9 @@ export class Address {
 
     @Column('varchar', { length: 2 })
     state: string;
+
+    @Column('varchar', { length: 7 })
+    cep: string;
 
     @UpdateDateColumn({ type: 'date' })
     updatedAt: string;

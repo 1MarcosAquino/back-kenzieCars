@@ -6,8 +6,8 @@ export {
     TAddressUpdate,
 } from './address.interface';
 export {
-    TAnnouncement,
-    TAnnouncementRequest,
-    TAnnouncementResponse,
-    TAnnouncementUpdate,
+    TAds,
+    TAdsRequest,
+    TAdsResponse,
+    TAdsUpdate,
 } from './announcement.interface';

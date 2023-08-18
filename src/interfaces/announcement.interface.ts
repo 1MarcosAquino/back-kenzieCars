@@ -1,13 +1,7 @@
 import z from 'zod';
 import schema from '../schemas';
 
-export type TAnnouncement = z.infer<typeof schema.announcementSchema>;
-export type TAnnouncementResponse = z.infer<
-    typeof schema.announcementSchemaResponse
->;
-export type TAnnouncementUpdate = z.infer<
-    typeof schema.announcementSchemaUpdate
->;
-export type TAnnouncementRequest = z.infer<
-    typeof schema.announcementSchemaRequest
->;
+export type TAds = z.infer<typeof schema.announcementSchema>;
+export type TAdsResponse = z.infer<typeof schema.announcementResponseSchema>;
+export type TAdsUpdate = z.infer<typeof schema.announcementUpdateSchema>;
+export type TAdsRequest = z.infer<typeof schema.announcementCreateSchema>;

@@ -14,6 +14,8 @@ import {
     addressOrNotFoundById,
 } from './address.service';
 
+import { listAllAds, createAds } from './announcement.service';
+
 export default {
     userOrNotFoundByEmail,
     userOrNotFoundById,
@@ -21,6 +23,9 @@ export default {
     createUser,
     deleteUser,
     updateUser,
+
+    listAllAds,
+    createAds,
 
     createAddress,
     deleteAddress,

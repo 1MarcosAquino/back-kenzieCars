@@ -1,11 +1,31 @@
 import z from 'zod';
 
 import { addressCreateSchema, addressSchema } from './address.schema';
+import { announcementSchema } from './announcement.schema';
+import { commentSchema } from './comment.Schema';
 
 export const userSchema = z.object({
     id: z.string(),
-    firstName: z.string().max(45),
-    lastName: z.string().max(45),
+    firstName: z
+        .string()
+        .max(45)
+        .transform((firstName) =>
+            firstName
+                .trim()
+                .charAt(0)
+                .toLocaleUpperCase()
+                .concat(firstName.trim().slice(1))
+        ),
+    lastName: z
+        .string()
+        .max(45)
+        .transform((lastName) =>
+            lastName
+                .trim()
+                .charAt(0)
+                .toLocaleUpperCase()
+                .concat(lastName.trim().slice(1))
+        ),
     email: z.string().max(45).email(),
     announcer: z.boolean(),
     password: z.string().min(4).max(120),
@@ -25,8 +45,11 @@ export const userResponseSchema = userSchema
     .omit({
         password: true,
     })
-    .extend({ address: addressSchema })
-    .partial();
+    .extend({
+        address: addressSchema,
+        comments: z.array(commentSchema),
+        ads: z.array(announcementSchema),
+    });
 
 export const loginSchema = userSchema.pick({
     password: true,

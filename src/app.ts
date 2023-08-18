@@ -13,7 +13,7 @@ app.use(cors({ origin: '*' }));
 
 app.use('/users', route.users);
 app.use('/login', route.login);
-app.use('/announcements', (req, res) => res.status(200).json('ok'));
+app.use('/announcements', route.announcement);
 
 app.use(handleErrors);
 

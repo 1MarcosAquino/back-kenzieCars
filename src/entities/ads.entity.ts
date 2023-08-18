@@ -7,12 +7,15 @@ import {
     CreateDateColumn,
     ManyToOne,
     JoinColumn,
+    OneToMany,
 } from 'typeorm';
 
 import { User } from './users.entity';
+import { Image } from './imagens.entity';
+import { Comment } from './comments.entity';
 
-@Entity('announcements')
-export class Announcement {
+@Entity('ads')
+export class Ads {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
@@ -22,29 +25,29 @@ export class Announcement {
     @Column('varchar', { length: 15 })
     brand: string;
 
-    @Column('varchar', { length: 250 })
-    image: string;
-
     @Column()
     year: number;
 
-    @Column('varchar', { length: 15 })
-    fuel: string;
+    @Column()
+    fuel: number;
 
-    @Column('varchar', { length: 250 })
+    @Column()
+    value: number;
+
+    @Column('text')
     description: string;
 
-    @Column('varchar', { length: 10 })
+    @Column()
+    miles: number;
+
+    @Column('varchar', { length: 30 })
     color: string;
 
-    @Column()
-    km: number;
-
-    @Column()
-    price: number;
+    @Column('varchar', { length: 20 })
+    model: string;
 
     @CreateDateColumn({ type: 'date' })
-    value: number;
+    createdAt: string;
 
     @UpdateDateColumn({ type: 'date' })
     updatedAt: string;
@@ -52,9 +55,18 @@ export class Announcement {
     @DeleteDateColumn({ type: 'date', nullable: true })
     deletedAt?: string | null | undefined;
 
-    @ManyToOne(() => User, (user) => user.announcements, {
+    @ManyToOne(() => User, (user) => user.ads, {
         onDelete: 'CASCADE',
     })
     @JoinColumn()
     user: User;
+
+    @ManyToOne(() => Comment, (comment) => comment.ads, {
+        onDelete: 'CASCADE',
+    })
+    @JoinColumn()
+    comments: Comment;
+
+    @OneToMany(() => Image, (images) => images.ads)
+    images: Image[];
 }

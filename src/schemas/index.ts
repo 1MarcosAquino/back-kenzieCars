@@ -11,9 +11,9 @@ import {
 
 import {
     announcementSchema,
-    announcementSchemaRequest,
-    announcementSchemaResponse,
-    announcementSchemaUpdate,
+    announcementCreateSchema,
+    announcementResponseSchema,
+    announcementUpdateSchema,
 } from './announcement.schema';
 
 import {
@@ -34,9 +34,9 @@ export default {
     userResponseSchema,
 
     announcementSchema,
-    announcementSchemaRequest,
-    announcementSchemaResponse,
-    announcementSchemaUpdate,
+    announcementCreateSchema,
+    announcementResponseSchema,
+    announcementUpdateSchema,
 
     addressSchema,
     addressCreateSchema,
