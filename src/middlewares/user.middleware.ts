@@ -53,7 +53,7 @@ export const ensureUserNotExists = async (
     res: Response,
     next: NextFunction
 ): Promise<void> => {
-    await service.verifyUserExistsByEmail(req.body.email);
+    await service.verifyUserExistsByEmailService(req.body.email);
 
     return next();
 };
@@ -64,9 +64,9 @@ export const ensureUserExists = async (
     next: NextFunction
 ): Promise<Response | void> => {
     const id = res.locals.id;
-    console.log(id);
-    if (req.body.email) await service.userOrNotFoundByEmail(req.body.email);
-    else await service.userOrNotFoundById(id);
+    if (req.body.email)
+        await service.userOrNotFoundByEmailService(req.body.email);
+    else await service.userOrNotFoundService(id);
 
     return next();
 };

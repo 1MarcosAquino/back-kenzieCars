@@ -1,34 +1,60 @@
 import {
-    userOrNotFoundByEmail,
-    userOrNotFoundById,
-    verifyUserExistsByEmail,
-    createUser,
-    deleteUser,
-    updateUser,
+    userOrNotFoundByEmailService,
+    verifyUserExistsByEmailService,
+    createUserService,
+    deleteUserService,
+    userOrNotFoundService,
+    retrieverUserService,
 } from './user.service';
 
 import {
-    createAddress,
-    deleteAddress,
-    updateAddress,
-    addressOrNotFoundById,
+    createAddressService,
+    addressOrNotFoundService,
+    deleteAddressService,
 } from './address.service';
 
-import { listAllAds, createAds } from './announcement.service';
+import {
+    adsOrNotFoundService,
+    createAdsService,
+    deleteAdsService,
+    listAllAdsService,
+    retrieverAdsService,
+} from './ads.service';
+
+import {
+    createImageService,
+    imageOrNotFoundService,
+    deleteImageService,
+} from './image.service';
+import {
+    commentsOrNotFoundService,
+    createCommentService,
+    deleteCommentService,
+} from './comment.service';
 
 export default {
-    userOrNotFoundByEmail,
-    userOrNotFoundById,
-    verifyUserExistsByEmail,
-    createUser,
-    deleteUser,
-    updateUser,
+    userOrNotFoundByEmailService,
+    verifyUserExistsByEmailService,
+    createUserService,
+    deleteUserService,
+    userOrNotFoundService,
+    retrieverUserService,
 
-    listAllAds,
-    createAds,
+    createAddressService,
+    addressOrNotFoundService,
+    deleteAddressService,
 
-    createAddress,
-    deleteAddress,
-    updateAddress,
-    addressOrNotFoundById,
+    adsOrNotFoundService,
+    retrieverAdsService,
+    createAdsService,
+    deleteAdsService,
+    listAllAdsService,
+
+    createImageService,
+    imageOrNotFoundService,
+    deleteImageService,
+
+    createCommentService,
+    deleteCommentService,
+    commentsOrNotFoundService,
 };

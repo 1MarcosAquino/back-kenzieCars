@@ -61,11 +61,8 @@ export class Ads {
     @JoinColumn()
     user: User;
 
-    @ManyToOne(() => Comment, (comment) => comment.ads, {
-        onDelete: 'CASCADE',
-    })
-    @JoinColumn()
-    comments: Comment;
+    @OneToMany(() => Comment, (comment) => comment.ads)
+    comments: Comment[];
 
     @OneToMany(() => Image, (images) => images.ads)
     images: Image[];

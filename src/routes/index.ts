@@ -1,5 +1,8 @@
 import { login } from './login.route';
 import { users } from './users.route';
-import { announcement } from './announcement.route';
+import { ads } from './ads.route';
+import { image } from './image.route';
+import { address } from './address.route';
+import { comment } from './comment.router';
 
-export default { login, users, announcement };
+export default { login, users, ads, image, address, comment };

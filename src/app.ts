@@ -13,7 +13,10 @@ app.use(cors({ origin: '*' }));
 
 app.use('/users', route.users);
 app.use('/login', route.login);
-app.use('/announcements', route.announcement);
+app.use('/ads', route.ads);
+app.use('/image', route.image);
+app.use('/address', route.address);
+app.use('/comment', route.comment);
 
 app.use(handleErrors);
 

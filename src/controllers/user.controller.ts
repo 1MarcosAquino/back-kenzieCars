@@ -4,7 +4,7 @@ import utility from '../utilities';
 import schema from '../schemas';
 
 export const login = async (req: Request, res: Response): Promise<Response> => {
-    const user = await service.userOrNotFoundByEmail(req.body.email);
+    const user = await service.userOrNotFoundByEmailService(req.body.email);
     const token = utility.createToken(user!);
 
     await utility.comparePassword(req.body.password, user!.password);
@@ -16,12 +16,12 @@ export const createUSer = async (
     req: Request,
     res: Response
 ): Promise<Response> => {
-    await service.verifyUserExistsByEmail(req.body.email);
+    await service.verifyUserExistsByEmailService(req.body.email);
 
     const { address } = req.body;
-    const user = await service.createUser(req.body);
+    const user = await service.createUserService(req.body);
 
-    await service.createAddress({ ...address, user });
+    await service.createAddressService({ ...address, user });
 
     const parse = schema.userCreateResponseSchema.parse(user);
 
@@ -32,20 +32,18 @@ export const retrieverUser = async (
     req: Request,
     res: Response
 ): Promise<Response<Response>> => {
-    const user = await service.userOrNotFoundById(res.locals.id);
+    const user = await service.userOrNotFoundService(res.locals.id);
     const parse = schema.userResponseSchema.parse(user);
 
     return res.status(200).json(parse);
 };
 
 export const updateUser = async (req: Request, res: Response) => {
-    const user = await service.userOrNotFoundById(res.locals.id);
-
     const data = {
-        ...user,
+        ...(await service.userOrNotFoundService(res.locals.id)),
         ...req.body,
     };
-    await service.updateUser(data);
+    await service.createUserService(data);
 
     return res.status(200).json(`${Object.keys(req.body)} updated`);
 };
@@ -54,10 +52,10 @@ export const deleteUser = async (
     req: Request,
     res: Response
 ): Promise<Response> => {
-    const user = await service.userOrNotFoundById(res.locals.id);
+    const user = await service.userOrNotFoundService(res.locals.id);
 
-    await service.deleteAddress(user.address);
-    await service.deleteUser(user);
+    await service.deleteAddressService(user.address);
+    await service.deleteUserService(user);
 
     return res.status(204).send();
 };

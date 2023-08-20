@@ -14,9 +14,6 @@ export class Image {
     id: string;
 
     @Column({ type: 'text' })
-    name: string;
-
-    @Column({ type: 'text' })
     path: string;
 
     @ManyToOne(() => Ads, (ads) => ads.images, {

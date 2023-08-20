@@ -1,7 +1,7 @@
 import z from 'zod';
 
 import { addressCreateSchema, addressSchema } from './address.schema';
-import { announcementSchema } from './announcement.schema';
+import { adsSchema } from './ads.schema';
 import { commentSchema } from './comment.Schema';
 
 export const userSchema = z.object({
@@ -48,7 +48,7 @@ export const userResponseSchema = userSchema
     .extend({
         address: addressSchema,
         comments: z.array(commentSchema),
-        ads: z.array(announcementSchema),
+        ads: z.array(adsSchema),
     });
 
 export const loginSchema = userSchema.pick({

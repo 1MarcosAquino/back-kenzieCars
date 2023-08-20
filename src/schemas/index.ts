@@ -9,18 +9,15 @@ import {
     userCreateResponseSchema,
 } from './user.schema';
 
-import {
-    announcementSchema,
-    announcementCreateSchema,
-    announcementResponseSchema,
-    announcementUpdateSchema,
-} from './announcement.schema';
+import { adsSchema, adsCreateSchema, adsUpdateSchema } from './ads.schema';
 
 import {
     addressSchema,
     addressCreateSchema,
     addressSchemaUpdate,
 } from './address.schema';
+
+import { imageUpdateSchema, imageCreateSchema } from './image.schema';
 
 export default {
     userSchema,
@@ -33,12 +30,14 @@ export default {
     createToken,
     userResponseSchema,
 
-    announcementSchema,
-    announcementCreateSchema,
-    announcementResponseSchema,
-    announcementUpdateSchema,
+    adsSchema,
+    adsCreateSchema,
+    adsUpdateSchema,
 
     addressSchema,
     addressCreateSchema,
     addressSchemaUpdate,
+
+    imageUpdateSchema,
+    imageCreateSchema,
 };
