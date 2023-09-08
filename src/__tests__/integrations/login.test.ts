@@ -31,7 +31,7 @@ describe('POST/login', () => {
         const res = await supertest(app).post(path).send(mock.register);
 
         expect(res.status).toBe(200);
-        //expect(res.body).toBe(expect.any(String));
+        // expect(res.body).toBe({ token: expect.any(String) });
     });
 
     it('Error: Invalid credentials', async () => {
