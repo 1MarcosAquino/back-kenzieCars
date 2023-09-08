@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import middleware from '../middlewares';
+import middleware, { UserMiddleware } from '../middlewares';
 import schema from '../schemas';
 import controller from '../controllers';
 
@@ -7,7 +7,7 @@ export const image: Router = Router();
 
 image.patch(
     '/:id',
-    middleware.validateDataRequest(schema.imageUpdateSchema),
+    UserMiddleware.validateData(schema.imageUpdateSchema),
     middleware.validateToken,
     controller.imageUpdateController
 );

@@ -1,33 +1,9 @@
 import { Request, Response } from 'express';
-import service from '../services';
+import { UserService, AddressService } from '../services';
 import utility from '../utilities';
 import schema from '../schemas';
-
-export const login = async (req: Request, res: Response): Promise<Response> => {
-    const user = await service.userOrNotFoundByEmailService(req.body.email);
-    const token = utility.createToken(user!);
-
-    await utility.comparePassword(req.body.password, user!.password);
-
-    return res.status(200).json({ token });
-};
-
-export const createUSer = async (
-    req: Request,
-    res: Response
-): Promise<Response> => {
-    await service.verifyUserExistsByEmailService(req.body.email);
-
-    const { address } = req.body;
-    const user = await service.createUserService(req.body);
-
-    await service.createAddressService({ ...address, user });
-
-    const parse = schema.userCreateResponseSchema.parse(user);
-
-    return res.status(201).json(parse);
-};
-
+import { AppError } from '../errors';
+/*
 export const retrieverUser = async (
     req: Request,
     res: Response
@@ -59,3 +35,37 @@ export const deleteUser = async (
 
     return res.status(204).send();
 };
+*/
+export class UserController {
+    constructor() {}
+
+    static async login(
+        req: Request,
+        res: Response
+    ): Promise<Response<{ token: string }>> {
+        const user = await UserService.retiver({ email: req.body.email });
+
+        const token = utility.createToken(user!);
+
+        await utility.comparePassword(req.body.password, user!.password);
+
+        return res.status(200).json({ token });
+    }
+
+    static async create(req: Request, res: Response): Promise<Response> {
+        const userExsists = await UserService.retiver({
+            email: req.body.email,
+        });
+
+        if (userExsists) throw new AppError('Ops! Email already exists', 409);
+
+        const { address, ...rest } = req.body;
+        const user = await UserService.create(rest);
+
+        await AddressService.create({ ...address, user });
+
+        const parse = schema.userCreateResponseSchema.parse(user);
+
+        return res.status(201).json(parse);
+    }
+}

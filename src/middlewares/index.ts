@@ -1,15 +1,8 @@
-import {
-    validateDataRequest,
-    ensureUserExists,
-    ensureUserNotExists,
-    validateToken,
-    permissionOfAccess,
-} from './user.middleware';
+export { UserMiddleware } from './user.middleware';
+
+import { validateToken, permissionOfAccess } from './user.middleware';
 
 export default {
-    validateDataRequest,
-    ensureUserExists,
-    ensureUserNotExists,
     validateToken,
     permissionOfAccess,
 };

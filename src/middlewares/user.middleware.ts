@@ -2,7 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { ZodTypeAny } from 'zod';
 import { AppError } from '../errors';
-import service from '../services';
+import { UserService } from '../services';
+import { User } from '../entities';
 
 export const permissionOfAccess = async (
     req: Request,
@@ -40,33 +41,50 @@ export const validateToken = async (
     return next();
 };
 
-export const validateDataRequest =
-    (anySchema: ZodTypeAny) =>
-    (req: Request, res: Response, next: NextFunction): void => {
-        req.body = anySchema.parse(req.body);
+export class UserMiddleware {
+    constructor() {}
 
-        next();
-    };
+    static async ensureUserExists(
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ): Promise<Response | void> {
+        const id = res.locals.id;
+        const email = req.body.email;
 
-export const ensureUserNotExists = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-): Promise<void> => {
-    await service.verifyUserExistsByEmailService(req.body.email);
+        let user: User | null;
 
-    return next();
-};
+        if (email) user = await UserService.retiver({ email });
+        else user = await UserService.retiver({ id });
 
-export const ensureUserExists = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-): Promise<Response | void> => {
-    const id = res.locals.id;
-    if (req.body.email)
-        await service.userOrNotFoundByEmailService(req.body.email);
-    else await service.userOrNotFoundService(id);
+        if (!user) throw new AppError('Ops!, User not fund', 404);
 
-    return next();
-};
+        return next();
+    }
+
+    static async ensureNotUserExists(
+        req: Request,
+        res: Response,
+        next: NextFunction
+    ): Promise<Response | void> {
+        const email = req.body.email;
+
+        const user = await UserService.retiver({ email });
+
+        if (user) throw new AppError('Ops! Email already exists', 409);
+
+        return next();
+    }
+
+    static validateData(anySchema: ZodTypeAny) {
+        return async (
+            req: Request,
+            res: Response,
+            next: NextFunction
+        ): Promise<void> => {
+            req.body = anySchema.parse(req.body);
+
+            next();
+        };
+    }
+}

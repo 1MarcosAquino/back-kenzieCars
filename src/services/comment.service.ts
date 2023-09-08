@@ -1,20 +1,18 @@
-import { AppError } from '../errors';
 import { commentsRepo } from '../data-source';
 import { Comment } from '../entities';
 
-export const commentsOrNotFoundService = async (
-    id: string
-): Promise<Comment | void> => {
-    const comments = await commentsRepo.findOneBy({ id });
+export class CommentService {
+    constructor() {}
 
-    if (!comments) throw new AppError('Comment not found', 404);
+    static async create(data: Comment) {
+        return await commentsRepo.save(commentsRepo.create(data));
+    }
 
-    return comments;
-};
+    static async retriever(id: string): Promise<Comment[] | null> {
+        return await commentsRepo.findBy({ id });
+    }
 
-export const createCommentService = async (data: Comment): Promise<Comment> =>
-    await commentsRepo.save(commentsRepo.create(data));
-
-export const deleteCommentService = async (data: Comment): Promise<void> => {
-    await commentsRepo.remove(data);
-};
+    static async delete(data: Comment): Promise<void> {
+        await commentsRepo.remove(data);
+    }
+}

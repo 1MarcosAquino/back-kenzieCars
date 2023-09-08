@@ -27,6 +27,8 @@ export const userSchema = z.object({
                 .concat(lastName.trim().slice(1))
         ),
     email: z.string().max(45).email(),
+    phone: z.string().max(45),
+    description: z.string(),
     announcer: z.boolean(),
     password: z.string().min(4).max(120),
 });

@@ -34,6 +34,9 @@ export class Ads {
     @Column()
     value: number;
 
+    @Column()
+    fipe: number;
+
     @Column('text')
     description: string;
 

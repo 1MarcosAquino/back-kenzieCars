@@ -1,17 +1,18 @@
 import { Router } from 'express';
-import controller from '../controllers';
-import middleware from '../middlewares';
+import { UserController } from '../controllers';
+import { UserMiddleware } from '../middlewares';
 import schema from '../schemas';
 
 export const users: Router = Router();
 
 users.post(
     '',
-    middleware.ensureUserNotExists,
-    middleware.validateDataRequest(schema.userCreateSchema),
-    controller.createUSer
+    UserMiddleware.validateData(schema.userCreateSchema),
+    UserMiddleware.ensureNotUserExists,
+    UserController.create
 );
 
+/*
 users.get(
     '',
     middleware.validateToken,
@@ -34,3 +35,4 @@ users.delete(
     middleware.ensureUserExists,
     controller.deleteUser
 );
+*/

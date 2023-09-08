@@ -1,13 +1,14 @@
 import { Router } from 'express';
-import controller from '../controllers';
-import middleware from '../middlewares';
+import { UserController } from '../controllers';
+
+import { UserMiddleware } from '../middlewares';
 import schema from '../schemas';
 
 export const login: Router = Router();
 
 login.post(
     '',
-    middleware.validateDataRequest(schema.loginSchema),
-    middleware.ensureUserExists,
-    controller.login
+    UserMiddleware.validateData(schema.loginSchema),
+    UserMiddleware.ensureUserExists,
+    UserController.login
 );

@@ -1,21 +1,19 @@
 import { imageRepo } from '../data-source';
 import { Image } from '../entities';
-import { AppError } from '../errors';
-import { TimageCreate } from '../interfaces';
+// import { TimageCreate } from '../interfaces';
 
-export const createImageService = async (data: TimageCreate): Promise<Image> =>
-    await imageRepo.save(imageRepo.create(data));
+export class ImageService {
+    constructor() {}
 
-export const imageOrNotFoundService = async (
-    id: string
-): Promise<Image | void> => {
-    const image: Image | null = await imageRepo.findOneBy({ id });
+    static async create(data: Image): Promise<Image> {
+        return await imageRepo.save(imageRepo.create(data));
+    }
 
-    if (!image) throw new AppError('Ops! Image not found.', 404);
+    static async retiever(id: string): Promise<Image | null> {
+        return await imageRepo.findOneBy({ id });
+    }
 
-    return image;
-};
-
-export const deleteImageService = async (data: Image): Promise<void> => {
-    await imageRepo.remove(data);
-};
+    static async delete(data: Image): Promise<void> {
+        await imageRepo.remove(data);
+    }
+}

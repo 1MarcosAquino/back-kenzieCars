@@ -18,3 +18,19 @@ export const createAddressService = async (data: Address): Promise<Address> =>
 export const deleteAddressService = async (data: Address): Promise<void> => {
     await addressRepo.remove(data);
 };
+
+export class AddressService {
+    constructor() {}
+
+    static async retiever(id: string): Promise<Address | null> {
+        return await addressRepo.findOneBy({ id });
+    }
+
+    static async create(address: Address): Promise<Address> {
+        return await addressRepo.save(addressRepo.create(address));
+    }
+
+    static async delete(address: Address): Promise<void> {
+        await addressRepo.remove(address);
+    }
+}

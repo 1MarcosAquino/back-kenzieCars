@@ -1,10 +1,4 @@
-import {
-    login,
-    createUSer,
-    deleteUser,
-    retrieverUser,
-    updateUser,
-} from './user.controller';
+export { UserController } from './user.controller';
 
 import {
     createAdsController,
@@ -28,12 +22,6 @@ import {
 } from './comment.controller';
 
 export default {
-    login,
-    createUSer,
-    deleteUser,
-    retrieverUser,
-    updateUser,
-
     createAdsController,
     listAdsController,
     retrieverAdsController,

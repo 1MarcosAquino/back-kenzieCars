@@ -44,3 +44,24 @@ export const verifyUserExistsByEmailService = async (
 export const deleteUserService = async (user: User): Promise<void> => {
     await userRepo.remove(user);
 };
+
+type retieveProp = { id: string } | { email: string } | { phone: string };
+
+export class UserService {
+    constructor() {}
+
+    static async create(user: User): Promise<User> {
+        return await userRepo.save(userRepo.create(user));
+    }
+
+    static async retiver(where: retieveProp): Promise<User | null> {
+        return await userRepo.findOne({
+            where: where,
+            relations: { address: true, ads: true, comments: true },
+        });
+    }
+
+    static async deleter(user: User): Promise<void> {
+        await userRepo.remove(user);
+    }
+}

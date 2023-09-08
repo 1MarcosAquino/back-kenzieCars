@@ -2,7 +2,6 @@ import {
     Entity,
     Column,
     PrimaryGeneratedColumn,
-    DeleteDateColumn,
     UpdateDateColumn,
     CreateDateColumn,
     BeforeInsert,
@@ -30,20 +29,23 @@ export class User {
     @Column('varchar', { length: 45, unique: true })
     email: string;
 
+    @Column('varchar', { length: 12, unique: true })
+    phone: string;
+
     @Column({ default: false, nullable: true })
     announcer: boolean;
 
     @Column('varchar', { length: 120 })
     password: string;
 
+    @Column('text')
+    description: string;
+
     @CreateDateColumn({ type: 'date' })
     createdAt: string;
 
     @UpdateDateColumn({ type: 'date' })
     updatedAt: string;
-
-    @DeleteDateColumn({ type: 'date', nullable: true })
-    deletedAt?: string | null | undefined;
 
     @OneToOne(() => Address, (address) => address.user)
     address: Address;

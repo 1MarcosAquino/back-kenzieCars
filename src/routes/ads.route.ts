@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import controller from '../controllers';
-import middleware from '../middlewares';
+import middleware, { UserMiddleware } from '../middlewares';
 import schema from '../schemas';
 
 export const ads: Router = Router();
@@ -10,14 +10,14 @@ ads.get('/:id', controller.retrieverAdsController);
 
 ads.post(
     '',
-    middleware.validateDataRequest(schema.adsCreateSchema),
+    UserMiddleware.validateData(schema.adsCreateSchema),
     middleware.validateToken,
     controller.createAdsController
 );
 
 ads.patch(
     '/:id',
-    middleware.validateDataRequest(schema.adsUpdateSchema),
+    UserMiddleware.validateData(schema.adsUpdateSchema),
     middleware.validateToken,
     controller.updateAdsController
 );
